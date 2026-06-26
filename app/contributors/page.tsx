@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { createClient } from "../../lib/supabase/client";
 
 export default function ContributorsPage() {
@@ -14,16 +15,17 @@ export default function ContributorsPage() {
   }, []);
 
   async function fetchContributors() {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .not("name", "is", null);
-
-    if (error) {
-      console.error(error);
-      setLoading(false);
-      return;
-    }
+const { data, error } = await supabase
+  .from("profiles")
+  .select(`
+    id,
+    name,
+    role,
+    is_public
+  `)
+  .eq("is_public", true)
+  .not("name", "is", null)
+  .order("created_at", { ascending: false })
 
     setContributors(data || []);
     setLoading(false);
