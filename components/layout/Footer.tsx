@@ -169,7 +169,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/130384447/admin/feed/following/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-slate-500 transition hover:text-blue-600"
