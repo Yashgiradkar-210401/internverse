@@ -32,11 +32,12 @@ export default function StatsSection() {
   .eq("status", "approved");
 
     const { count: contributorCount } = await supabase
-      .from("profiles")
-      .select("*", {
-        count: "exact",
-        head: true,
-      });
+  .from("profiles")
+  .select("*", {
+    count: "exact",
+    head: true,
+  })
+  .eq("is_public", true);
 
     setArticles(articleCount || 0);
     setExperiences(experienceCount || 0);
